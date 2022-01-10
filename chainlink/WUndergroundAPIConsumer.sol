@@ -6,7 +6,7 @@ import "@chainlink/contracts/src/v0.8/ChainlinkClient.sol";
 contract APIConsumer is ChainlinkClient {
     using Chainlink for Chainlink.Request;
   
-    uint256 public preciptRate;
+    uint256 public precipRate;
     
     address private oracle;
     bytes32 private jobId;
@@ -29,7 +29,7 @@ contract APIConsumer is ChainlinkClient {
     /**
      * Create a Chainlink request to retrieve API response, find the weather target data 
      */
-    function requestVolumeData() public returns (bytes32 requestId) 
+    function requestPrecipRate() public returns (bytes32 requestId) 
     {
         Chainlink.Request memory request = buildChainlinkRequest(jobId, address(this), this.fulfill.selector);
         
