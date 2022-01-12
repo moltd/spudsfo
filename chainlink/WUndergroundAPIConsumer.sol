@@ -3,7 +3,7 @@ pragma solidity ^0.8.7;
 
 import "@chainlink/contracts/src/v0.8/ChainlinkClient.sol";
 
-contract APIConsumer is ChainlinkClient {
+contract WUndergroundAPIConsumer is ChainlinkClient {
     using Chainlink for Chainlink.Request;
   
     uint256 public precipRate;
