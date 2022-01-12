@@ -56,7 +56,7 @@ contract APIConsumer is ChainlinkClient {
      */ 
     function fulfill(bytes32 _requestId, uint256 _precipRate) public recordChainlinkFulfillment(_requestId)
     {
-        preciptRate = _precipRate;
+        precipRate = _precipRate;
     }
 
     // function withdrawLink() external {} - Implement a withdraw function to avoid locking your LINK in the contract
