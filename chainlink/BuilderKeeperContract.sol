@@ -18,6 +18,8 @@ contract BuilderKeeperContract is KeeperCompatibleInterface {
     uint public immutable interval;
     uint public lastTimeStamp;
     
+    AccuweatherConsumer internal accuWeatherFeed;
+    
     /** LINK, Oracle and JobIDs for AccuWeather */
     string internal accuW_Link = "0xa36085F69e2889c224210F603D836748e7dC0088";
     string internal accuW_Oracle = "0xfF07C97631Ff3bAb5e5e5660Cdf47AdEd8D4d4Fd";
@@ -30,11 +32,22 @@ contract BuilderKeeperContract is KeeperCompatibleInterface {
     constructor(uint updateInterval) {
     
       // Realitically for our use case we only need to this contract unkeep once every 24 hours, but for the test instance we will do every 15 seconds
-   
+  
       interval = updateInterval;
       lastTimeStamp = block.timestamp;
-
       daysMissed = 0;
+      
+      accuWeatherFeed = AccuweatherConsumer(accuW_Link, accuW_Oracle);
+    }
+
+    function getWeather() {
+         accuWeatherFeed.CurrentConditionResult = accuWeatherFeed.requestLocationCurrentConditions( 
+            unit256 accuW_jobID,
+            string accuW_Link,
+            string jobsite_LAT,
+            string jobsite_LONG,
+            string units);
+            
     }
 
     function checkUpkeep(bytes calldata /* checkData */) external override returns (bool upkeepNeeded, bytes memory /* performData */) {
