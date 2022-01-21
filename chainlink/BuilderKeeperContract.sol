@@ -27,8 +27,12 @@ contract BuilderKeeperContract is KeeperCompatibleInterface {
     string internal accuW_Oracle = "0xfF07C97631Ff3bAb5e5e5660Cdf47AdEd8D4d4Fd";
     string internal accuW_jobID = "7c276986e23b4b1c990d8659bca7a9d0" // location-current-conditions
     struct internal CurrentConditionResult result;
-
     
+    /* Payment from and Payment to detail */
+    string internal builderAccount = "0xFA5390058c4707a77DA8Ee7FB253A169eb239702";
+    string internal builderAccount = "0xFA5390058c4707a77DA8Ee7FB253A169eb239702";
+
+
     /** JobSite LONG / LAT **/
     uint internal jobsite_LAT = 37;
     uint internal jobsite_LONG = -122; 
