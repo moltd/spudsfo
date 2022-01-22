@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >= ^0.7.0;
+pragma solidity >= 0.7.0;
 
 // KeeperCompatible.sol imports the functions from both ./KeeperBase.sol and
 
 import "@chainlink/contracts/src/v0.7/KeeperCompatible.sol";
-import "https://github.com/moltd/spudsfo/edit/master/chainlink/AccuweatherConsumer.sol" // get weather data from AccuWeather 
-import "https://github.com/ckraczkowsky91/smb-smart-contract-ethereum/blob/master/SmartInvoice.sol"
+import "https://github.com/moltd/spudsfo/edit/master/chainlink/AccuweatherConsumer.sol"; // get weather data from AccuWeather 
+import "https://github.com/ckraczkowsky91/smb-smart-contract-ethereum/blob/master/SmartInvoice.sol";
 
 contract BuilderKeeperContract is KeeperCompatibleInterface {
     /**
@@ -19,7 +19,7 @@ contract BuilderKeeperContract is KeeperCompatibleInterface {
     */
     uint public immutable interval;
     uint public lastTimeStamp;
-    unit private monthTime = 2,592,00; // Month in epoch seconds.
+    unit private monthTime = 259200; // Month in epoch seconds.
     
     /**
      * Third party contracts used to bring use case to life
@@ -31,12 +31,20 @@ contract BuilderKeeperContract is KeeperCompatibleInterface {
     /** LINK, Oracle and JobIDs for AccuWeather */
     string internal accuW_Link = "0xa36085F69e2889c224210F603D836748e7dC0088";
     string internal accuW_Oracle = "0xfF07C97631Ff3bAb5e5e5660Cdf47AdEd8D4d4Fd";
-    string internal accuW_jobID = "7c276986e23b4b1c990d8659bca7a9d0" // location-current-conditions
-    struct internal CurrentConditionResult result;
+    string internal accuW_jobID = "7c276986e23b4b1c990d8659bca7a9d0"; // location-current-conditions
+    struct result {
+        string jobid;
+        string LINK;
+        string jobsite_LAT;
+        string jobsite_LONG;
+        string units;
+    }
+        
+    
     
     /* Payment from and Payment to detail */
     string internal builderAccount;
-    string internal customerAccount = "0xTBD;
+    string internal customerAccount = "0xTBD";
 
 
     /** JobSite LONG / LAT **/
@@ -59,9 +67,9 @@ contract BuilderKeeperContract is KeeperCompatibleInterface {
          result = accuWeatherFeed.requestLocationCurrentConditions(
             accuW_jobID,
             accuW_Link,
-            string jobsite_LAT,
-            string jobsite_LONG,
-            string units);
+            jobsite_LAT,
+            jobsite_LONG,
+            units);
             
          return result.preciptationPast24Hours;
     }
