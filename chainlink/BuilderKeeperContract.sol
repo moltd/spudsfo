@@ -33,12 +33,20 @@ contract BuilderKeeperContract is KeeperCompatibleInterface {
     string internal accuW_Link = "0xa36085F69e2889c224210F603D836748e7dC0088";
     string internal accuW_Oracle = "0xfF07C97631Ff3bAb5e5e5660Cdf47AdEd8D4d4Fd";
     string internal accuW_jobID = "7c276986e23b4b1c990d8659bca7a9d0"; // location-current-conditions
-    struct result {
-        string jobid;
-        string LINK;
-        string jobsite_LAT;
-        string jobsite_LONG;
-        string units;
+    
+    struct CurrentConditionsResult {
+        uint256 timestamp;
+        uint24 precipitationPast12Hours;
+        uint24 precipitationPast24Hours;
+        uint24 precipitationPastHour;
+        uint24 pressure;
+        int16 temperature;
+        uint16 windDirectionDegrees;
+        uint16 windSpeed;
+        uint8 precipitationType;
+        uint8 relativeHumidity;
+        uint8 uvIndex;
+        uint8 weatherIcon;
     }
     
     /* Payment from and Payment to detail */
@@ -63,7 +71,7 @@ contract BuilderKeeperContract is KeeperCompatibleInterface {
     }
 
     function getWeatherPrecipRate() {
-         result = accuWeatherFeed.requestLocationCurrentConditions(
+         CurrentConditionsResult result = accuWeatherFeed.requestLocationCurrentConditions(
             accuW_jobID,
             accuW_Link,
             jobsite_LAT,
