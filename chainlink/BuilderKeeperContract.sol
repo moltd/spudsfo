@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >= 0.7.0;
+pragma solidity >=0.6.4 <0.8.5;
+
 
 // KeeperCompatible.sol imports the functions from both ./KeeperBase.sol and
 
@@ -39,8 +40,6 @@ contract BuilderKeeperContract is KeeperCompatibleInterface {
         string jobsite_LONG;
         string units;
     }
-        
-    
     
     /* Payment from and Payment to detail */
     string internal builderAccount;
