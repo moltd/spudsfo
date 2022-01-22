@@ -4,7 +4,7 @@ pragma solidity >= 0.7.0;
 // KeeperCompatible.sol imports the functions from both ./KeeperBase.sol and
 
 import "@chainlink/contracts/src/v0.7/KeeperCompatible.sol";
-import "https://github.com/moltd/spudsfo/edit/master/chainlink/AccuweatherConsumer.sol"; // get weather data from AccuWeather 
+import "https://github.com/moltd/spudsfo/blob/master/chainlink/AccuweatherConsumer.sol"; // get weather data from AccuWeather 
 import "https://github.com/ckraczkowsky91/smb-smart-contract-ethereum/blob/master/SmartInvoice.sol";
 
 contract BuilderKeeperContract is KeeperCompatibleInterface {
